@@ -34,6 +34,15 @@ html, body {
   font-size: 1.2em;
 }
 
+.leaflet-sidebar {
+  max-width: 390px;
+  width: 390px;
+}
+
+.leaflet-sidebar-pane {
+  min-width: 350px;
+}
+
 .leaflet-sidebar-header {
   background-color: #339661;
 }
@@ -43,6 +52,8 @@ html, body {
   background-color: #339661;
 }
 
+
+
 .twitter-typeahead {
   display: -webkit-box;
   display: -moz-box;
@@ -51,14 +62,13 @@ html, body {
   display: flex;
   vertical-align: middle;
   width: 95%;
-  margin-left: 2.5%;
   margin-right: 2.5%;
+  margin-top: 2em;
 }
 .typeahead,
 .tt-query,
 .tt-hint {
   width: 95%;
-  margin-left: 2.5%;
   margin-right: 2.5%;
   height: 3rem;
   font-size: 17px;
@@ -121,3 +131,6 @@ html, body {
   margin: 0;
 }
 
+#showhideRedline {
+  margin-top: 2em;
+}

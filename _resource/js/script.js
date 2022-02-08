@@ -5,7 +5,7 @@ require('leaflet.markercluster');
 var $ = require('jquery');
 require('typeahead.js');
 
-import reaps from '../reaps.json';
+var redlineIsShown = false;
 import { redlinePopup, redlineLayer } from './redline.js';
 
 L.Icon.Default.imagePath = 'img/icon/';
@@ -28,7 +28,7 @@ const lng = -84.1916;
 //MAP
 const map = L.map('map', {
   center: [lat, lng],
-  zoom: 14,
+  zoom: 12,
   zoomControl: false,
   layers: [osm_layer]
 });
@@ -60,6 +60,7 @@ var allMarkers = [];
 var markerSearch = [];
 var markers;
 var onlyNew = false;
+var reaps = {};
 
  /// typeahead helper
   function substringMatcher(strs) {
@@ -82,11 +83,6 @@ var onlyNew = false;
 
       $.each(strs, function(i, str) {
         if (substrRegex.test(str)) {
-          // the typeahead jQuery plugin expects suggestions to a
-          // JavaScript object, refer to typeahead docs for more info
-
-          // Update the found attribute on the master marker list
-          // This will later used to update the markers on the map
           allMarkers[i % allMarkers.length].found = true;
           matches.push({ value: str });
         }
@@ -139,7 +135,6 @@ var onlyNew = false;
     $('#linkToTreasuresSite').html("<a href=\""
       + generateTreasurersLink(pid)
       + "\" target=\"_blank\">View Property on Treasurer's Site</a>");
-    $(".introcontainer").css("margin-top", "255px");
   }
 
 function popup(street, parcel) {
@@ -230,22 +225,32 @@ function initMarkers() {
   }
 
 $("document").ready(function() {
-  console.log("INIT!");
-  initMarkers();
+  import(/* webpackChunkName: "reaps" */ '../reaps.json').then(module => {
+    reaps = module.default;
+    initMarkers();
 
-  $("#addressInput").typeahead({
-    minLength: 0,
-    highlight: true,
-    hint: false
-  }, {
-    name: "AllMarkers",
-    displayKey: "value",
-    source: substringMatcher(markerSearch),
-    limit: 15,
-    templates: {
-      empty: '<div class="empty-message">No Lot Links eligible properties were found. <br /><span class="error-text">If you provided a complete address, then the property is not eligible for Lot Links at this time.</span></div>'
-    }
+    $("#addressInput").typeahead({
+      minLength: 0,
+      highlight: true,
+      hint: false
+    }, {
+      name: "AllMarkers",
+      displayKey: "value",
+      source: substringMatcher(markerSearch),
+      limit: 15,
+      templates: {
+        empty: '<div class="empty-message">No matching properties found.</div>'
+      }
+    });
+
+    $('#last_update').text((new Date(reaps.lastupdated)).toLocaleDateString());
+
+
+    $('#showhideRedline').click(() => {
+      if (redlineIsShown) redlineLayer.remove();
+      else map.addLayer(redlineLayer);
+      redlineIsShown = !redlineIsShown;
+    });
   });
-
 });
 
