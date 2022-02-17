@@ -6,6 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css" rel="stylesheet">
     <title>Monty Lots</title>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-02GXFQ7011"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-02GXFQ7011');
+</script>
 </head>
 <body>
     <!-- optionally define the sidebar content via HTML markup -->
@@ -32,6 +41,7 @@
                     Monty Lots
                     <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
+                <img class="logo" src="monty-logo.png" />
                 <input id="addressInput" class="typeahead" type="text" placeholder="Enter Street Address or Parcel ID">
                 <div class="results">
                     <p class="result-text" id="selectedAddress"></p>
@@ -39,7 +49,18 @@
                     <p class="result-text" id="linkToTreasuresSite"></p>
                 </div>
                 <hr />
-                <p>The properties that appear on Monty Lots would have previously qualified for the Dayton Lot Links program or the Montgomery County Landbank property acquisition program.</p>
+                <p>
+                  Montgomery County Ohio is burdened with thousands of tax delinquent, abandoned properties. Neglected and deteriorating buildings detract from neighborhoods and cost taxpayers money. In 2009, the state of Ohio enacted <a href="https://codes.ohio.gov/ohio-revised-code/section-323.66">legislation</a> to expedite a tax foreclosure process so these properties could be transferred to new owners.
+                </p>
+                <p class="holcred">
+                  NOTICE: All foreclosure acquisition programs are currently suspended. You can use this website to review tax delinquent properties that may be eligible in the future.(Feb, 2022) 
+                </p>
+                <p>
+                  <a href="https://mclandbank.com/programs/foreclosure-acquisition/">The Montgomery County Land Bank</a> manages an administrative foreclosure acquisition  program for eligible properties in the county, excluding lots within Dayton city limits. Properties within the city of Dayton are slated to be available through a <a href="https://www.mcohio.org/government/elected_officials/treasurer/tax_payer_services/depositor_foreclosure.php">new program administered by the Montgomery County Treasurer’s office</a>.
+                </p>
+                <p>
+                  All properties displayed on Monty Lots meet the first-step requirement to qualify for these  acquisition programs: they are all at least 2 years delinquent on property taxes.
+                </p>
                 <p class="fineprint"><i>The data for this tool comes from the Montgomery County Treasurers Office database. It was last queried on <span id="last_update"></span>.</i></p>
             </div>
 
@@ -48,8 +69,17 @@
                     Red Line Data
                     <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
+                <img class="logo" src="redlining.png" />
                 <button id="showhideRedline">Toggle Red Line Data</button>
-                <p>Data is pulled from this <a href="https://www.esri.com/arcgis-blog/products/arcgis-living-atlas/announcements/redlining-data-now-in-arcgis-living-atlas/" target="_blank">ArcGIS Living Atlas</a>.</p>
+                <p>
+                  In conjunction with the release of <a href="https://thinktv.org/redlining/">ThinkTV’s Documentary “Redlining: Mapping Inequality in Dayton and Springfield”</a> we’ve added the 1935 federal Home Owners’ Loan Corporation  map to Monty Lots. HOLC surveyors traveled the country, using a standardized system to  classify neighborhoods by their perceived level of lending risk. The highest risk areas were color-coded red, so the maps became known as “redline” maps. Monty Lots now shows the 1935 rating boundaries in relation to currently distressed properties in Montgomery County. 
+                </p>
+                <p>
+                  To learn more about redlining and its legacy, you can visit the traveling exhibit “Undesign the Redline” at <a href="https://liberal-arts.wright.edu/sociology-and-anthropology/undesign-the-redline">Wright State University</a> the month of February. The exhibit will be at <a href="https://corinthianbcdayton.org/">Corinthian Baptist Church</a> in March, and <a href="https://www.thehubdayton.com/">The Hub at the Arcade</a> in April. 
+                </p>
+                <p>
+                  Data is pulled from this <a href="https://www.esri.com/arcgis-blog/products/arcgis-living-atlas/announcements/redlining-data-now-in-arcgis-living-atlas/" target="_blank">ArcGIS Living Atlas</a>.
+                </p>
             </div>
 
             <div class="leaflet-sidebar-pane" id="messages">
