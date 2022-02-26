@@ -63,7 +63,7 @@ html, body {
   vertical-align: middle;
   width: 95%;
   margin-right: 2.5%;
-  margin-top: 2em;
+  margin-top: .5em;
 }
 .typeahead,
 .tt-query,
@@ -134,3 +134,10 @@ html, body {
 #showhideRedline {
   margin-top: 2em;
 }
+
+.logo {
+  margin-top: 2em;
+  max-width: 100%;
+}
+
+

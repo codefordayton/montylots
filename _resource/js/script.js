@@ -5,6 +5,7 @@ require('leaflet.markercluster');
 var $ = require('jquery');
 require('typeahead.js');
 
+
 var redlineIsShown = false;
 import { redlinePopup, redlineLayer } from './redline.js';
 
@@ -224,7 +225,10 @@ function initMarkers() {
     }
   }
 
+
 $("document").ready(function() {
+  document.getElementsByTagName("html")[0].style.visibility = "visible";
+
   import(/* webpackChunkName: "reaps" */ '../reaps.json').then(module => {
     reaps = module.default;
     initMarkers();
