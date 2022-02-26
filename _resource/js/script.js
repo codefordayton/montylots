@@ -125,7 +125,7 @@ var reaps = {};
   });
 
   function generateTreasurersLink(pid){
-    return 'https://www.mcohio.org/government/elected_officials/treasurer/mctreas/master.cfm?parid=' + pid.replace(/ /g, '%20') + '&taxyr=2018&own1=SMITH';
+    return 'https://www.mcohio.org/government/elected_officials/treasurer/mctreas/master.cfm?parid=' + pid.replace(/ /g, '%20') + '&taxyr=2021&own1=SMITH';
   };
 
   /// Lookup based on typeahead and updating right bar
