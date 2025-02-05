@@ -131,6 +131,7 @@ var reaps = {};
 
   /// Lookup based on typeahead and updating right bar
   function selectedProperty(address,pid, claimed) {
+    console.log(address, pid, claimed);
     $('#selectedAddress').text(address);
     $('#selectedParcelId').text(pid);
     $('#linkToTreasuresSite').html("<a href=\""
@@ -158,17 +159,17 @@ function initMarkers() {
   });
 
   // points object is loaded from the data file
-  for (var i = 0; i < reaps.points.length; i++) {
-    var a = reaps.points[i];
+  for (var i = 0; i < reaps.length; i++) {
+    var a = reaps[i];
     var title = a.st;
     var icon = blueMarker;
     if (a.lot)
       icon = lotMarker;
 
-    var marker = L.marker(L.latLng(parseFloat(a.lat), parseFloat(a.lon)), { title: title, icon: icon });
+    var marker = L.marker(L.latLng(parseFloat(a.latitude), parseFloat(a.longitude)), { title: title, icon: icon });
 
-    marker.address = a.st;
-    marker.pid = a.pid;
+    marker.address = a.location;
+    marker.pid = a.TAXPINNO;
     marker.claimed = a.claimed;
     marker.new = a.new;
     marker.found = true; // Helper attribute for the search function.
@@ -176,7 +177,7 @@ function initMarkers() {
     marker.on('click', function(e) {
       selectedProperty(e.target.address, e.target.pid, e.target.claimed);
     });
-    marker.bindPopup(popup(title, a.pid));
+    marker.bindPopup(popup(title, a.TAXPINNO));
     allMarkers.push(marker);
   }
   // markerSearch array contains the search terms
@@ -229,7 +230,7 @@ function initMarkers() {
 $("document").ready(function() {
   document.getElementsByTagName("html")[0].style.visibility = "visible";
 
-  import(/* webpackChunkName: "reaps" */ '../reaps.json').then(module => {
+  import(/* webpackChunkName: "reaps" */ '../registry.json').then(module => {
     reaps = module.default;
     initMarkers();
 
@@ -247,7 +248,7 @@ $("document").ready(function() {
       }
     });
 
-    $('#last_update').text((new Date(reaps.lastupdated)).toLocaleDateString());
+    // $('#last_update').text((new Date(reaps.lastupdated)).toLocaleDateString());
 
 
     $('#showhideRedline').click(() => {
